@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "Base Renovate preset for @unabandoned forks: keep dependencies current, automerge them nightly, pin the supply chain, flag anything that itself becomes abandoned, and fast-track security fixes.",
+  "description": "Base Renovate preset for @unabandoned forks: keep dependencies current, soak new releases before adopting them, automerge once green, pin the supply chain, flag anything that itself becomes abandoned, and fast-track security fixes.",
   "extends": [
     "config:best-practices",
     "helpers:pinGitHubActionDigestsToSemver",
@@ -10,10 +10,6 @@
     ":enableVulnerabilityAlerts",
     ":automergeStableNonMajor",
     "group:linters"
-  ],
-  "schedule": [
-    "after 10pm",
-    "before 6am"
   ],
   "rebaseWhen": "behind-base-branch",
   "labels": [
@@ -49,7 +45,8 @@
     "automerge": true,
     "schedule": [
       "at any time"
-    ]
+    ],
+    "minimumReleaseAge": "0 seconds"
   },
   "forkProcessing": "enabled"
 }
