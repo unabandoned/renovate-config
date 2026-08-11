@@ -13,13 +13,23 @@
     "group:linters"
   ],
   "rebaseWhen": "behind-base-branch",
-  "labels": ["dependencies"],
-  "lockFileMaintenance": { "enabled": true },
+  "labels": [
+    "dependencies"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "osvVulnerabilityAlerts": true,
   "vulnerabilityAlerts": {
-    "labels": ["dependencies", "security"],
+    "labels": [
+      "dependencies",
+      "security"
+    ],
     "automerge": true,
-    "schedule": ["at any time"],
+    "schedule": [
+      "at any time"
+    ],
     "minimumReleaseAge": null
-  }
+  },
+  "forkProcessing": "enabled"
 }
