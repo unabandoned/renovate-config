@@ -11,27 +11,22 @@
     ":automergeStableNonMajor",
     "group:linters"
   ],
-  "schedule": [
-    "after 10pm",
-    "before 6am"
-  ],
+  "schedule": ["after 10pm", "before 6am"],
   "rebaseWhen": "behind-base-branch",
-  "labels": [
-    "dependencies"
+  "labels": ["dependencies"],
+  "semanticCommits": "enabled",
+  "packageRules": [
+    {
+      "matchDepTypes": ["dependencies"],
+      "semanticCommitType": "fix"
+    }
   ],
-  "lockFileMaintenance": {
-    "enabled": true
-  },
+  "lockFileMaintenance": { "enabled": true },
   "osvVulnerabilityAlerts": true,
   "vulnerabilityAlerts": {
-    "labels": [
-      "dependencies",
-      "security"
-    ],
+    "labels": ["dependencies", "security"],
     "automerge": true,
-    "schedule": [
-      "at any time"
-    ]
+    "schedule": ["at any time"]
   },
   "forkProcessing": "enabled"
 }
