@@ -9,8 +9,11 @@
     "abandonments:recommended",
     ":enableVulnerabilityAlerts",
     ":automergeStableNonMajor",
-    "schedule:nightly",
     "group:linters"
+  ],
+  "schedule": [
+    "after 10pm",
+    "before 6am"
   ],
   "rebaseWhen": "behind-base-branch",
   "labels": [
@@ -28,8 +31,7 @@
     "automerge": true,
     "schedule": [
       "at any time"
-    ],
-    "minimumReleaseAge": null
+    ]
   },
   "forkProcessing": "enabled"
 }
