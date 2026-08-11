@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Base Renovate preset for @unabandoned forks: keep dependencies current and automerged, pin the supply chain, and flag anything that itself becomes abandoned.",
+  "extends": [
+    "config:best-practices",
+    "helpers:pinGitHubActionDigestsToSemver",
+    "helpers:disableTypesNodeMajor",
+    "security:openssf-scorecard",
+    "abandonments:recommended",
+    ":enableVulnerabilityAlerts",
+    ":automergeStableNonMajor",
+    "group:linters"
+  ],
+  "rebaseWhen": "behind-base-branch",
+  "labels": ["dependencies"],
+  "lockFileMaintenance": { "enabled": true }
+}
