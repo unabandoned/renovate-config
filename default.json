@@ -33,15 +33,11 @@
       "automerge": true
     },
     {
-      "description": "Zero-runtime-dependency leaf shims we've triaged as leave-alone or vendored in-tree. A package with no dependencies has no transitive tree to rot, so abandonment is not actionable for it (fork trigger is abandoned AND an outdated dep). Suppress the abandonment flag to keep the Dependency Dashboards signal-only; forking any of these remains a deliberate, separately-tracked decision.",
+      "description": "Suppress abandonment flags only for abandoned zero-dependency leaf clones we neither ship to consumers nor plan to fork or vendor - pure dashboard noise, nothing to act on. Anything abandoned that ships in a published @unabandoned tree (e.g. ret) or that we vendor or intend to fork stays flagged, because that is an actionable signal we do not want to hide.",
       "matchDatasources": [
         "npm"
       ],
       "matchPackageNames": [
-        "base64-js",
-        "ieee754",
-        "drange",
-        "ret",
         "functions-have-names",
         "has",
         "has-symbols",
