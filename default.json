@@ -33,7 +33,7 @@
       "automerge": true
     },
     {
-      "description": "Suppress abandonment flags only for abandoned zero-dependency leaf clones we neither ship to consumers nor plan to fork or vendor - pure dashboard noise, nothing to act on. Anything abandoned that ships in a published @unabandoned tree (e.g. ret) or that we vendor or intend to fork stays flagged, because that is an actionable signal we do not want to hide.",
+      "description": "Suppress abandonment flags only for abandoned zero-dependency leaf clones we neither ship to consumers nor plan to fork or vendor - pure dashboard noise, nothing to act on. Anything abandoned that ships in a published @unabandoned tree (e.g. ret) or that we vendor or intend to fork stays flagged (save for the reviewed frozen-leaf exception in the next rule), because that is an actionable signal we do not want to hide.",
       "matchDatasources": [
         "npm"
       ],
@@ -42,6 +42,21 @@
         "has",
         "has-symbols",
         "isarray"
+      ],
+      "abandonmentThreshold": "50 years"
+    },
+    {
+      "description": "Also suppress abandonment flags for abandoned packages that are frozen at their latest release with a fully-current, zero-dependency subtree - there is no transitive tree left to rot, so the flag carries no actionable signal (a direct CVE is still surfaced by the vulnerabilityAlerts above). Reviewed 2026-08 during the detective/browser-pack adoption: these ship in, or are dev deps of, @unabandoned/browser-pack and @unabandoned/module-deps, and none is a fork or vendor candidate.",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "JSONStream",
+        "jsonparse",
+        "through",
+        "umd",
+        "convert-source-map",
+        "parse-base64vlq-mappings"
       ],
       "abandonmentThreshold": "50 years"
     }
