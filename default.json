@@ -70,6 +70,30 @@
         "parse-base64vlq-mappings"
       ],
       "abandonmentThreshold": "50 years"
+    },
+    {
+      "description": "Suppress abandonment flags for the abandoned zero-runtime-dep leaves that ship in (or are dev deps of) @unabandoned/browserify and @unabandoned/module-deps: node-builtin browser-polyfill shims (console-browserify, constants-browserify, https-browserify, os-browserify, tty-browserify, vm-browserify, process, punycode, querystring-es3, inherits) and small internal/test leaves (cached-path-relative, defined, has-object-spread, has-template-literals, isstream). Each declares zero runtime dependencies of its own, so there is nothing under them to rot; a direct CVE is still surfaced by the vulnerabilityAlerts above. The has-runtime-dep polyfills (stream-browserify, util, url, stream-http, browserify-zlib, timers-browserify, readable-stream) and crypto-browserify are deliberately NOT listed here - carrying a runtime dependency, they must be owned (fork/vendor/replace), not silenced. Reviewed 2026-08.",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "console-browserify",
+        "constants-browserify",
+        "https-browserify",
+        "os-browserify",
+        "tty-browserify",
+        "vm-browserify",
+        "process",
+        "punycode",
+        "querystring-es3",
+        "inherits",
+        "cached-path-relative",
+        "defined",
+        "has-object-spread",
+        "has-template-literals",
+        "isstream"
+      ],
+      "abandonmentThreshold": "50 years"
     }
   ],
   "lockFileMaintenance": {
