@@ -46,12 +46,11 @@
       "abandonmentThreshold": "50 years"
     },
     {
-      "description": "Also suppress abandonment flags for abandoned packages that are frozen at their latest release with a fully-current, zero-dependency subtree - there is no transitive tree left to rot, so the flag carries no actionable signal (a direct CVE is still surfaced by the vulnerabilityAlerts above). Reviewed 2026-08 during the detective/browser-pack adoption: these ship in, or are dev deps of, @unabandoned/browser-pack and @unabandoned/module-deps, and none is a fork or vendor candidate.",
+      "description": "Suppress abandonment flags only for abandoned packages that declare ZERO runtime dependencies of their own and are frozen at their latest release - there is nothing under them to rot, so the flag carries no actionable signal (a direct CVE is still surfaced by the vulnerabilityAlerts above). Eligibility is strict and per-package: declaring ANY runtime dependency disqualifies a package - even if that dependency is itself current or separately suppressed here - and it must be owned (fork, vendor, or replace) rather than silenced. Being 'on latest' is not sufficient. These ship in, or are dev deps of, @unabandoned/browser-pack and @unabandoned/module-deps. (JSONStream was removed 2026-08: it declares through + jsonparse as runtime deps, so it is a fork/own target, not a silence target.)",
       "matchDatasources": [
         "npm"
       ],
       "matchPackageNames": [
-        "JSONStream",
         "jsonparse",
         "through",
         "umd",
