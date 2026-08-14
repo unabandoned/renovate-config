@@ -33,6 +33,18 @@
       "automerge": true
     },
     {
+      "description": "Auto-merge Renovate PRs that bump our own first-party config repos - the unabandoned/.github reusable-workflow digest ('commit tag') pins and the unabandoned/renovate-config preset. These are internal and reviewed at source, so adopt them immediately on green with no soak.",
+      "matchPackageNames": [
+        "/^unabandoned\\/\\.github(\\/|$)/",
+        "/^unabandoned\\/renovate-config(\\/|$)/"
+      ],
+      "automerge": true,
+      "minimumReleaseAge": "0 seconds",
+      "schedule": [
+        "at any time"
+      ]
+    },
+    {
       "description": "Suppress abandonment flags only for abandoned zero-dependency leaf clones we neither ship to consumers nor plan to fork or vendor - pure dashboard noise, nothing to act on. Anything abandoned that ships in a published @unabandoned tree (e.g. ret) or that we vendor or intend to fork stays flagged (save for the reviewed frozen-leaf exception in the next rule), because that is an actionable signal we do not want to hide.",
       "matchDatasources": [
         "npm"
