@@ -33,12 +33,13 @@
       "automerge": true
     },
     {
-      "description": "Auto-merge Renovate PRs that bump our own first-party config repos - the unabandoned/.github reusable-workflow digest ('commit tag') pins and the unabandoned/renovate-config preset. These are internal and reviewed at source, so adopt them immediately on green with no soak.",
+      "description": "Auto-merge Renovate PRs that bump our own first-party config repos - the unabandoned/.github reusable-workflow digest ('commit tag') pins and the unabandoned/renovate-config preset. These are internal and reviewed at source, so adopt them immediately on green with no soak. They land as `chore(deps)` (CI-only, not `fix`), so release-please never cuts a release for them. Use branch-strategy automerge so Renovate lands the pin directly on green instead of leaving a PR that sits unmerged whenever GitHub-native PR auto-merge isn't armed on the fork - if the branch can't be pushed (e.g. a protected base), Renovate falls back to a normal automerged PR.",
       "matchPackageNames": [
         "/^unabandoned\\/\\.github(\\/|$)/",
         "/^unabandoned\\/renovate-config(\\/|$)/"
       ],
       "automerge": true,
+      "automergeType": "branch",
       "minimumReleaseAge": "0 seconds",
       "schedule": [
         "at any time"
