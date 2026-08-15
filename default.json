@@ -95,6 +95,17 @@
         "isstream"
       ],
       "abandonmentThreshold": "50 years"
+    },
+    {
+      "description": "Suppress abandonment flags for the abandoned zero-runtime-dep leaves that ship in @unabandoned/undeclared-identifiers: dash-ast (frozen at 2.0.1, 2020-03-11) and get-assigned-identifiers (frozen at 1.2.0, 2018-02-08). Both declare zero runtime dependencies of their own, so there is nothing under them to rot and the flag carries no actionable signal; a direct CVE is still surfaced by the vulnerabilityAlerts above. Their own devDependencies are stale (acorn 5/7, standard 10/14, tape 4) but are never installed by consumers and never run in our CI, so forking would create that dev-tree exposure rather than remove it. simple-concat, the third package the dashboard flagged on this fork, is deliberately NOT listed here - it was a one-call stdin slurp replaced outright by the built-in node:stream/consumers, so it left the tree instead of being silenced. Reviewed 2026-08.",
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "dash-ast",
+        "get-assigned-identifiers"
+      ],
+      "abandonmentThreshold": "50 years"
     }
   ],
   "lockFileMaintenance": {
