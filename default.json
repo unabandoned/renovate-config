@@ -108,13 +108,12 @@
       "abandonmentThreshold": "50 years"
     },
     {
-      "description": "Suppress abandonment flags for the abandoned zero-runtime-dep leaves that ship in @unabandoned/json-to-ts and @unabandoned/hash.js: pluralize (frozen at 8.0.0, 2019-05-25) and minimalistic-assert (frozen at 1.0.1, 2018-04-11). Both declare zero runtime dependencies of their own, so there is nothing under them to rot and the flag carries no actionable signal; a direct CVE is still surfaced by the vulnerabilityAlerts above. hash.js, the third package json-to-ts's dashboard flagged, is deliberately NOT listed here - it declares runtime dependencies of its own, so it was adopted as @unabandoned/hash.js rather than silenced, and es7-shim left the tree outright when json-to-ts was onboarded. Reviewed 2026-09.",
+      "description": "Suppress abandonment flags for pluralize (frozen at 8.0.0, 2019-05-25), the one inert leaf that ships in @unabandoned/json-to-ts: it declares zero runtime dependencies of its own, so there is nothing under it to rot and the flag carries no actionable signal; a direct CVE is still surfaced by the vulnerabilityAlerts above. The other two packages json-to-ts's dashboard flagged are deliberately NOT listed here, because neither was silenced: es7-shim left the tree outright (everything it polyfilled is native now), and hash.js declares runtime dependencies of its own, so it was adopted as @unabandoned/hash.js - which in turn vendored its own two leaves (minimalistic-assert, inherits: ten and fifteen lines of ISC code) instead of depending on them, so neither is in any tree of ours to suppress. Reviewed 2026-09.",
       "matchDatasources": [
         "npm"
       ],
       "matchPackageNames": [
-        "pluralize",
-        "minimalistic-assert"
+        "pluralize"
       ],
       "abandonmentThreshold": "50 years"
     }
