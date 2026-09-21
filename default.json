@@ -73,7 +73,7 @@
       "abandonmentThreshold": "50 years"
     },
     {
-      "description": "Suppress abandonment flags for the abandoned zero-runtime-dep leaves that ship in (or are dev deps of) @unabandoned/browserify and @unabandoned/module-deps: node-builtin browser-polyfill shims (console-browserify, constants-browserify, https-browserify, os-browserify, tty-browserify, vm-browserify, process, punycode, querystring-es3, inherits) and small internal/test leaves (cached-path-relative, defined, has-object-spread, has-template-literals, isstream). Each declares zero runtime dependencies of its own, so there is nothing under them to rot; a direct CVE is still surfaced by the vulnerabilityAlerts above. The has-runtime-dep polyfills (stream-browserify, util, url, stream-http, browserify-zlib, timers-browserify, readable-stream) and crypto-browserify are deliberately NOT listed here - carrying a runtime dependency, they must be owned (fork/vendor/replace), not silenced. safe-buffer (frozen at 5.2.1, 2020-05-10) joins them: zero runtime dependencies, and it ships in @unabandoned/browserify-sign, @unabandoned/crypto-browserify and several of the browserify leaves. Reviewed 2026-09.",
+      "description": "Suppress abandonment flags for the abandoned zero-runtime-dep leaves that ship in (or are dev deps of) @unabandoned/browserify and @unabandoned/module-deps: node-builtin browser-polyfill shims (console-browserify, constants-browserify, https-browserify, os-browserify, tty-browserify, vm-browserify, process, punycode, querystring-es3, inherits) and small internal/test leaves (cached-path-relative, defined, has-object-spread, has-template-literals, isstream). Each declares zero runtime dependencies of its own, so there is nothing under them to rot; a direct CVE is still surfaced by the vulnerabilityAlerts above. The has-runtime-dep polyfills (stream-browserify, util, url, stream-http, browserify-zlib, timers-browserify, readable-stream) and crypto-browserify are deliberately NOT listed here - carrying a runtime dependency, they must be owned (fork/vendor/replace), not silenced. safe-buffer (frozen at 5.2.1, 2020-05-10) joins them: zero runtime dependencies, and it ships in @unabandoned/browserify-sign, @unabandoned/crypto-browserify and several of the browserify leaves. hash-test-vectors (frozen at 1.3.2, 2015-01-14) joins them: zero runtime dependencies, and it is a devDependency holding the node-produced digest corpus @unabandoned/crypto-browserify checks its hash implementations against - fixture data, not code, with nothing beneath it to rot. Reviewed 2026-09.",
       "matchDatasources": [
         "npm"
       ],
@@ -93,7 +93,8 @@
         "has-object-spread",
         "has-template-literals",
         "isstream",
-        "safe-buffer"
+        "safe-buffer",
+        "hash-test-vectors"
       ],
       "abandonmentThreshold": "50 years"
     },
