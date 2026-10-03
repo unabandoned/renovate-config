@@ -123,6 +123,40 @@
         "vue-shadow-dom"
       ],
       "abandonmentThreshold": "50 years"
+    },
+    {
+      "description": [
+        "The inert leaves on @unabandoned/qrcode's dashboard. Same test as the rules above,",
+        "checked per package at the version the fork pins, not at latest:",
+        "",
+        "  canvasutil  0.0.4, frozen 2014-05-26 - dev only, used by examples/clientsideserver.js,",
+        "              and examples/ is not in package.json#files, so it reaches no consumer.",
+        "  dijkstrajs  1.0.3, frozen 2023-04-15 - runtime, required by lib/core/segments.js.",
+        "  pngjs       7.0.0, frozen 2023-02-20 - runtime, required by lib/renderer/png.js.",
+        "",
+        "All three declare zero dependencies, zero peerDependencies and zero",
+        "optionalDependencies, so there is nothing under them to rot and the flag names no",
+        "action. Two of them ship, which is not disqualifying on its own - the frozen-leaf",
+        "exception turns on the tree, not on the audience - and a direct CVE in any of them",
+        "is still surfaced by the vulnerabilityAlerts in default.json.",
+        "",
+        "The other three packages qrcode's dashboard flagged are deliberately NOT here,",
+        "because none of them was silenced: browserify and colors left the tree outright",
+        "(declared devDependencies that nothing in the repository required), and standard",
+        "declares nine dependencies of its own headed by an end-of-life eslint 8, so it was",
+        "replaced with neostandard, its maintained successor.",
+        "",
+        "Reviewed 2026-10-03."
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "canvasutil",
+        "dijkstrajs",
+        "pngjs"
+      ],
+      "abandonmentThreshold": "50 years"
     }
   ]
 }
