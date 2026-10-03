@@ -9,7 +9,8 @@
     "abandonments:recommended",
     ":enableVulnerabilityAlerts",
     ":automergeStableNonMajor",
-    "group:linters"
+    "group:linters",
+    "github>unabandoned/renovate-config:abandoned-exclusions"
   ],
   "rebaseWhen": "behind-base-branch",
   "labels": [
@@ -44,80 +45,6 @@
       "schedule": [
         "at any time"
       ]
-    },
-    {
-      "description": "Suppress abandonment flags only for abandoned zero-dependency leaf clones we neither ship to consumers nor plan to fork or vendor - pure dashboard noise, nothing to act on. Anything abandoned that ships in a published @unabandoned tree (e.g. ret) or that we vendor or intend to fork stays flagged (save for the reviewed frozen-leaf exception in the next rule), because that is an actionable signal we do not want to hide.",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "functions-have-names",
-        "has",
-        "has-symbols",
-        "isarray"
-      ],
-      "abandonmentThreshold": "50 years"
-    },
-    {
-      "description": "Suppress abandonment flags only for abandoned packages that declare ZERO runtime dependencies of their own and are frozen at their latest release - there is nothing under them to rot, so the flag carries no actionable signal (a direct CVE is still surfaced by the vulnerabilityAlerts above). Eligibility is strict and per-package: declaring ANY runtime dependency disqualifies a package - even if that dependency is itself current or separately suppressed here - and it must be owned (fork, vendor, or replace) rather than silenced. Being 'on latest' is not sufficient. These ship in, or are dev deps of, @unabandoned/browser-pack, @unabandoned/module-deps, @unabandoned/jsonstream and @unabandoned/browserify: jsonparse is the sole runtime leaf of @unabandoned/jsonstream (pulled transitively by browser-pack, module-deps, deps-sort and insert-module-globals); through is now only a dev dependency of @unabandoned/browserify (JSONStream's old runtime through was vendored into @unabandoned/jsonstream when it was forked 2026-08, so it no longer ships in the runtime tree). Reviewed 2026-08.",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "jsonparse",
-        "through",
-        "umd",
-        "convert-source-map",
-        "parse-base64vlq-mappings"
-      ],
-      "abandonmentThreshold": "50 years"
-    },
-    {
-      "description": "Suppress abandonment flags for the abandoned zero-runtime-dep leaves that ship in (or are dev deps of) @unabandoned/browserify and @unabandoned/module-deps: node-builtin browser-polyfill shims (console-browserify, constants-browserify, https-browserify, os-browserify, tty-browserify, vm-browserify, process, punycode, querystring-es3, inherits) and small internal/test leaves (cached-path-relative, defined, has-object-spread, has-template-literals, isstream). Each declares zero runtime dependencies of its own, so there is nothing under them to rot; a direct CVE is still surfaced by the vulnerabilityAlerts above. The has-runtime-dep polyfills (stream-browserify, util, url, stream-http, browserify-zlib, timers-browserify, readable-stream) and crypto-browserify are deliberately NOT listed here - carrying a runtime dependency, they must be owned (fork/vendor/replace), not silenced. safe-buffer (frozen at 5.2.1, 2020-05-10) joins them: zero runtime dependencies, and it ships in @unabandoned/browserify-sign, @unabandoned/crypto-browserify and several of the browserify leaves. hash-test-vectors (frozen at 1.3.2, 2015-01-14) joins them: zero runtime dependencies, and it is a devDependency holding the node-produced digest corpus @unabandoned/crypto-browserify checks its hash implementations against - fixture data, not code, with nothing beneath it to rot. Reviewed 2026-09.",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "console-browserify",
-        "constants-browserify",
-        "https-browserify",
-        "os-browserify",
-        "tty-browserify",
-        "vm-browserify",
-        "process",
-        "punycode",
-        "querystring-es3",
-        "inherits",
-        "cached-path-relative",
-        "defined",
-        "has-object-spread",
-        "has-template-literals",
-        "isstream",
-        "safe-buffer",
-        "hash-test-vectors"
-      ],
-      "abandonmentThreshold": "50 years"
-    },
-    {
-      "description": "Suppress abandonment flags for the abandoned zero-runtime-dep leaves that ship in @unabandoned/undeclared-identifiers: dash-ast (frozen at 2.0.1, 2020-03-11) and get-assigned-identifiers (frozen at 1.2.0, 2018-02-08). Both declare zero runtime dependencies of their own, so there is nothing under them to rot and the flag carries no actionable signal; a direct CVE is still surfaced by the vulnerabilityAlerts above. Their own devDependencies are stale (acorn 5/7, standard 10/14, tape 4) but are never installed by consumers and never run in our CI, so forking would create that dev-tree exposure rather than remove it. simple-concat, the third package the dashboard flagged on this fork, is deliberately NOT listed here - it was a one-call stdin slurp replaced outright by the built-in node:stream/consumers, so it left the tree instead of being silenced. Reviewed 2026-08.",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "dash-ast",
-        "get-assigned-identifiers"
-      ],
-      "abandonmentThreshold": "50 years"
-    },
-    {
-      "description": "Suppress abandonment flags for pluralize (frozen at 8.0.0, 2019-05-25), the one inert leaf that ships in @unabandoned/json-to-ts: it declares zero runtime dependencies of its own, so there is nothing under it to rot and the flag carries no actionable signal; a direct CVE is still surfaced by the vulnerabilityAlerts above. The other two packages json-to-ts's dashboard flagged are deliberately NOT listed here, because neither was silenced: es7-shim left the tree outright (everything it polyfilled is native now), and hash.js declares runtime dependencies of its own, so it was adopted as @unabandoned/hash.js - which in turn vendored its own two leaves (minimalistic-assert, inherits: ten and fifteen lines of ISC code) instead of depending on them, so neither is in any tree of ours to suppress. Reviewed 2026-09.",
-      "matchDatasources": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "pluralize"
-      ],
-      "abandonmentThreshold": "50 years"
     }
   ],
   "lockFileMaintenance": {
