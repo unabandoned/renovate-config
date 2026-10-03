@@ -109,12 +109,13 @@
         "zero dependencies, zero peerDependencies, zero optionalDependencies.",
         "",
         "Reviewed 2026-10-03 for it-tools, where eleven abandonment flags were",
-        "hiding the four that needed acting on."
+        "Reviewed 2026-10-03 for it-tools, where eleven abandonment flags were hiding the four that needed acting on; @vicons/material added on the same date from the same dashboard (0.13.0, frozen 2024-12-20, zero dependencies, supplies the icon components in every tool's index.ts)."
       ],
       "matchDatasources": [
         "npm"
       ],
       "matchPackageNames": [
+        "@vicons/material",
         "change-case",
         "consola",
         "cron-validator",
@@ -155,6 +156,34 @@
         "canvasutil",
         "dijkstrajs",
         "pngjs"
+      ],
+      "abandonmentThreshold": "50 years"
+    },
+    {
+      "description": [
+        "A GitHub Action, not an npm package, so none of the rules above can reach it:",
+        "they all match the npm datasource.",
+        "",
+        "amannn/action-semantic-pull-request validates PR titles against Conventional",
+        "Commits in it-tools. Renovate flags it because its last RELEASE was 2025-08-22,",
+        "and the dashboard says plainly how it decides: 'abandonment is detected by",
+        "release inactivity'. That is the wrong signal here. The repository had commits",
+        "two days before this rule was written, it is not archived, and the work in them",
+        "is routine dependency maintenance on a 1.4k-star action that has been feature",
+        "complete for a year. Nothing is rotting; nobody has walked away.",
+        "",
+        "It is also pinned by commit SHA with the version in a comment, so what runs in",
+        "CI cannot change under us, and Renovate still offers digest and version updates",
+        "for it -- this silences only the age-based flag.",
+        "",
+        "Reviewed 2026-10-03."
+      ],
+      "matchDatasources": [
+        "github-tags",
+        "github-releases"
+      ],
+      "matchPackageNames": [
+        "amannn/action-semantic-pull-request"
       ],
       "abandonmentThreshold": "50 years"
     }
