@@ -355,6 +355,11 @@
         "dependencies of their own, which are disqualified by the test and want owning one at a",
         "time.",
         "",
+        "Added 2026-10-08: estraverse 5.3.0 and esutils 2.0.3, the two runtime dependencies",
+        "@unabandoned/escodegen keeps. Both declare nothing beneath them and are frozen at",
+        "their latest release, so they pass the same test. CyberChef now reaches them through",
+        "that fork instead of through abandoned escodegen 2.1.0.",
+        "",
         "Reviewed 2026-10-04."
       ],
       "matchDatasources": [
@@ -376,6 +381,8 @@
         "d3-hexbin",
         "es6-promisify",
         "esprima",
+        "estraverse",
+        "esutils",
         "exif-parser",
         "file-saver",
         "flat",
