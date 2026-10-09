@@ -419,6 +419,35 @@
         "zlibjs"
       ],
       "abandonmentThreshold": "50 years"
+    },
+    {
+      "description": [
+        "The inert leaf on @unabandoned/grunt-contrib-watch's dashboard. Same test as the rules",
+        "above, checked at the version the fork pins (^4.0.2, which is also latest):",
+        "",
+        "  livereload-js  4.0.2, frozen 2023-10-21 - runtime. It is not executed in Node at all:",
+        "                 tasks/lib/lrserver.js resolves livereload-js/dist/livereload.js and",
+        "                 serves that file to the browser at GET /livereload.js.",
+        "",
+        "It declares zero dependencies, zero peerDependencies and zero optionalDependencies, so",
+        "there is nothing under it to rot and the flag names no action. Replacing it would mean",
+        "vendoring a built browser bundle in its place, which owns the same frozen code with",
+        "more work and no change in risk. A direct CVE is still surfaced by the",
+        "vulnerabilityAlerts in default.json.",
+        "",
+        "The fork's other runtime dependencies (chokidar 5, ws 8) are maintained and not",
+        "flagged; the old livereload server tree (tiny-lr, faye-websocket, body, qs) was",
+        "already replaced in-tree by lrserver.js.",
+        "",
+        "Reviewed 2026-10-09."
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "livereload-js"
+      ],
+      "abandonmentThreshold": "50 years"
     }
   ]
 }
