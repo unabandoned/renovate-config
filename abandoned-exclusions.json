@@ -370,6 +370,9 @@
         "their latest release, so they pass the same test. CyberChef now reaches them through",
         "that fork instead of through abandoned escodegen 2.1.0.",
         "",
+        "Added 2026-11-08: bcryptjs 3.0.3 (2025-11-02). Zero dependencies, zero peer and",
+        "optional dependencies at the version CyberChef pins, frozen at its latest release.",
+        "",
         "Reviewed 2026-10-04."
       ],
       "matchDatasources": [
@@ -381,6 +384,7 @@
         "argon2-browser",
         "avsc",
         "base64-loader",
+        "bcryptjs",
         "blakejs",
         "bootstrap-material-design",
         "codepage",
@@ -456,6 +460,62 @@
       ],
       "matchPackageNames": [
         "livereload-js"
+      ],
+      "abandonmentThreshold": "50 years"
+    },
+    {
+      "description": [
+        "Inert leaves on the dashboards of nodewarden, @unabandoned/postcss-css-variables and",
+        "@unabandoned/d3. Same test as the rules above, checked per package at the version each",
+        "project pins (which is also latest): zero dependencies, zero peerDependencies, zero",
+        "optionalDependencies, frozen at that release.",
+        "",
+        "  istanbul-lib-coverage  3.2.2, 2023-11-08  nodewarden (dev, coverage merging)",
+        "  qrcode-generator       2.0.4, 2025-08-07  nodewarden (runtime, TOTP QR codes)",
+        "  escape-string-regexp   5.0.0, 2021-04-17  @unabandoned/postcss-css-variables (runtime)",
+        "  internmap              2.0.3, 2021-09-20  @unabandoned/d3 (runtime, via d3-array)",
+        "",
+        "A direct CVE in any of them is still surfaced by the vulnerabilityAlerts in",
+        "default.json.",
+        "",
+        "Reviewed 2026-11-08."
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "escape-string-regexp",
+        "internmap",
+        "istanbul-lib-coverage",
+        "qrcode-generator"
+      ],
+      "abandonmentThreshold": "50 years"
+    },
+    {
+      "description": [
+        "THE SAME EXCEPTION AS amannn/action-semantic-pull-request ABOVE: release inactivity is",
+        "the wrong signal for this package, so it is not being silenced as inert -- it declares",
+        "five dependencies and would fail that test.",
+        "",
+        "@rollup/plugin-node-resolve is flagged because its last release, 16.0.3, was",
+        "2025-10-13. It lives in rollup/plugins, which is not archived, was pushed to the day",
+        "before this rule was written, and touched packages/node-resolve itself in 2026-03. Its",
+        "own tree is current: @rollup/pluginutils 5.5.1 (2026-10) and resolve 1.22.14 (2026-11)",
+        "are both maintained; deepmerge and is-module are frozen zero-dependency leaves. Nobody",
+        "has walked away; the plugin is finished.",
+        "",
+        "It is a build-time devDependency of @unabandoned/d3 and @unabandoned/qrcode, used by",
+        "rollup to bundle their dist files, and never installed by their consumers.",
+        "",
+        "Revisit if rollup/plugins is archived or the package's own dependencies go stale.",
+        "",
+        "Reviewed 2026-11-08."
+      ],
+      "matchDatasources": [
+        "npm"
+      ],
+      "matchPackageNames": [
+        "@rollup/plugin-node-resolve"
       ],
       "abandonmentThreshold": "50 years"
     }
